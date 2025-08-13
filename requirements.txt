@@ -1,0 +1,6 @@
+mcp
+requests
+httpx
+logging
+uv
+mcp[cli]
