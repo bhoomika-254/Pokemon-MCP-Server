@@ -1,17 +1,17 @@
-# Pokémon MCP Server
+# Pokemon MCP Server
 
-- A comprehensive Model Context Protocol (MCP) server that provides AI models with access to Pokémon data and battle simulation capabilities. 
+- A comprehensive Model Context Protocol (MCP) server that provides AI models with access to Pokemon data and battle simulation capabilities. 
 - Connected it to Claude MCP Client.
 
 ## Features
 
-### 🎯 **Pokémon Data Resource**
-- **Comprehensive Pokémon Information**: Access detailed data for any Pokémon including stats, types, abilities, moves, and evolution chains
+### 🎯 **Pokemon Data Resource**
+- **Comprehensive Pokemon Information**: Access detailed data for any Pokemon including stats, types, abilities, moves, and evolution chains
 - **Enhanced Move Details**: Get detailed information about moves including power, accuracy, PP, and effects
 - **Evolution Chains**: Complete evolution line information with visual progression
 
 ### ⚔️ **Battle Simulation Tool**
-- **Realistic Battle Mechanics**: Implements core Pokémon battle systems
+- **Realistic Battle Mechanics**: Implements core Pokemon battle systems
 - **Type Effectiveness**: Full type chart with accurate damage multipliers
 - **Status Effects**: Paralysis, Burn, and Poison with proper mechanics
 - **Turn-Based Combat**: Speed-based turn order with detailed battle logs
@@ -19,7 +19,7 @@
 
 ### 🛡️ **Type Analysis Tools**
 - **Type Effectiveness Lookup**: Check effectiveness between any two types
-- **Weakness/Resistance Analysis**: Comprehensive breakdown of a Pokémon's defensive matchups
+- **Weakness/Resistance Analysis**: Comprehensive breakdown of a Pokemon's defensive matchups
 - **Strategic Planning**: Perfect for team building and battle preparation
 
 ## Installation
@@ -42,9 +42,9 @@
 
 ## Usage
 
-### 📊 **Pokémon Data Resource**
+### 📊 **Pokemon Data Resource**
 
-Access comprehensive Pokémon data using the resource URI pattern:
+Access comprehensive Pokemon data using the resource URI pattern:
 
 ```
 mcp://pokemon-server/pokemon/{pokemon_name}
@@ -62,7 +62,7 @@ mcp://pokemon-server/pokemon/{pokemon_name}
 
 ### 🔥 **Battle Simulation Tool**
 
-Simulate realistic battles between any two Pokémon:
+Simulate realistic battles between any two Pokemon:
 
 ```python
 simulate_battle(pokemon1_name: str, pokemon2_name: str) -> str
@@ -91,9 +91,9 @@ get_type_effectiveness(attacking_type: str, defending_type: str) -> str
 - Damage multiplier information
 - Effectiveness description (Super effective, Not very effective, etc.)
 
-### 🛡️ **Pokémon Type Analysis Tool**
+### 🛡️ **Pokemon Type Analysis Tool**
 
-Get comprehensive defensive analysis for any Pokémon:
+Get comprehensive defensive analysis for any Pokemon:
 
 ```python
 get_pokemon_weaknesses_and_resistances(pokemon_name: str) -> str
@@ -108,29 +108,29 @@ get_pokemon_weaknesses_and_resistances(pokemon_name: str) -> str
 - Strategic recommendations
 
 #### `simulate_battle(pokemon1_name, pokemon2_name)`
-- **Description**: Simulates a battle between two Pokémon
+- **Description**: Simulates a battle between two Pokemon
 - **Parameters**:
-  - `pokemon1_name`: Name of the first Pokémon
-  - `pokemon2_name`: Name of the second Pokémon
+  - `pokemon1_name`: Name of the first Pokemon
+  - `pokemon2_name`: Name of the second Pokemon
 - **Returns**: Detailed battle log with turn-by-turn actions and winner
 
 #### `get_type_effectiveness(attacking_type, defending_type)`
 - **Description**: Gets type effectiveness multiplier
 - **Parameters**:
   - `attacking_type`: The attacking move's type
-  - `defending_type`: The defending Pokémon's type
+  - `defending_type`: The defending Pokemon's type
 - **Returns**: Effectiveness information and damage multiplier
 
 #### `get_pokemon_weaknesses_and_resistances(pokemon_name)`
-- **Description**: Analyzes a Pokémon's defensive type matchups
+- **Description**: Analyzes a Pokemon's defensive type matchups
 - **Parameters**:
-  - `pokemon_name`: Name of the Pokémon to analyze
+  - `pokemon_name`: Name of the Pokemon to analyze
 - **Returns**: Complete breakdown of weaknesses, resistances, and immunities
 
 ## Battle Mechanics
 
 ### Type Effectiveness Chart
-The server implements a comprehensive type effectiveness chart with 18 Pokémon types:
+The server implements a comprehensive type effectiveness chart with 18 Pokemon types:
 - **Super Effective**: 2x damage
 - **Not Very Effective**: 0.5x damage  
 - **No Effect**: 0x damage
@@ -148,7 +148,7 @@ Damage = (((2/5 + 2) × Move Power × (Attack / Defense)) / 50) × Type Effectiv
 
 ## Data Source
 
-This server uses the [PokéAPI](https://pokeapi.co/) to fetch real-time Pokémon data, ensuring accuracy and completeness.
+This server uses the [PokeAPI](https://pokeapi.co/) to fetch real-time Pokemon data, ensuring accuracy and completeness.
 
 ## Development
 
@@ -156,7 +156,7 @@ This server uses the [PokéAPI](https://pokeapi.co/) to fetch real-time Pokémon
 - Python 3.8+
 - FastMCP framework
 - httpx for API requests
-- PokéAPI
+- PokeAPI
 - uv for connecting claude to mcp server.
 
 ### Project Structure
@@ -169,23 +169,23 @@ Pokemon-MCP-Server/
 
 ### How to connect this with Claude Client
 
-To connect your Pokémon MCP Server with Claude Desktop, follow these steps:
+To connect your Pokemon MCP Server with Claude Desktop, follow these steps:
 
 #### 1. **Install Claude Desktop**
 Download and install Claude Desktop from [Anthropic's website](https://claude.ai/desktop).
 
 #### 2. **Configure MCP Server in Claude**
-Claude Desktop uses a configuration file to connect to MCP servers. You need to add your Pokémon server to this configuration.
+Claude Desktop uses a configuration file to connect to MCP servers. You need to add your Pokemon server to this configuration.
 
 **For Windows:**
 1. Navigate to: `%APPDATA%\Claude\claude_desktop_config.json`
 
 #### 3. **Verify Connection**
-Once Claude Desktop restarts, you should see the Pokémon MCP Server available. You can test it by:
+Once Claude Desktop restarts, you should see the Pokemon MCP Server available. You can test it by:
 
-1. **Testing the Resource**: Ask Claude to access Pokémon data:
+1. **Testing the Resource**: Ask Claude to access Pokemon data:
    ```
-   "Can you get information about Pikachu using the Pokémon resource?"
+   "Can you get information about Pikachu using the Pokemon resource?"
    ```
 
 2. **Testing Battle Simulation**: Ask Claude to simulate a battle:
