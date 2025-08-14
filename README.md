@@ -1,200 +1,160 @@
-# Pokemon MCP Server
+# Pokémon MCP Server
 
-- A comprehensive Model Context Protocol (MCP) server that provides AI models with access to Pokemon data and battle simulation capabilities. 
-- Connected it to Claude MCP Client.
+A Model Context Protocol (MCP) server that gives AI models access to comprehensive Pokémon data and battle simulation capabilities. Connect this server to Claude Desktop to chat about Pokémon with real data and simulate battles!
 
-## Features
+## 🚀 Quick Start
 
-### 🎯 **Pokemon Data Resource**
-- **Comprehensive Pokemon Information**: Access detailed data for any Pokemon including stats, types, abilities, moves, and evolution chains
-- **Enhanced Move Details**: Get detailed information about moves including power, accuracy, PP, and effects
-- **Evolution Chains**: Complete evolution line information with visual progression
+### Prerequisites
+- Python 3.8 or higher
+- Claude Desktop app
 
-### ⚔️ **Battle Simulation Tool**
-- **Realistic Battle Mechanics**: Implements core Pokemon battle systems
-- **Type Effectiveness**: Full type chart with accurate damage multipliers
-- **Status Effects**: Paralysis, Burn, and Poison with proper mechanics
-- **Turn-Based Combat**: Speed-based turn order with detailed battle logs
-- **Damage Calculation**: Realistic damage formulas based on stats and move power
+### 1. Install Dependencies
 
-### 🛡️ **Type Analysis Tools**
-- **Type Effectiveness Lookup**: Check effectiveness between any two types
-- **Weakness/Resistance Analysis**: Comprehensive breakdown of a Pokemon's defensive matchups
-- **Strategic Planning**: Perfect for team building and battle preparation
+Clone this repository and install the required packages:
 
-## Installation
+```bash
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
 
-1. **Clone the repository**:
+### 2. Test the Server
+
+Run the server to make sure it works:
+
+```bash
+python server.py
+```
+
+You should see: `server is runningggg`
+
+Press `Ctrl+C` to stop the server.
+
+### 3. Connect to Claude Desktop
+
+#### Step 3.1: Install Claude Desktop
+Download and install [Claude Desktop](https://claude.ai/desktop) if you haven't already.
+
+#### Step 3.2: Configure the Server
+1. Open the Claude Desktop configuration file:
+   - **Windows**: Navigate to `%APPDATA%\Claude\claude_desktop_config.json`
+   - **Mac**: Navigate to `~/Library/Application Support/Claude/claude_desktop_config.json`
+
+2. Initialize your project
+   - uv init pokemon-mcp-server
+   - uv run mcp install server.py
+
+3. This creates a configuration file which is saved in some similar fashion 
+   - claude_desktop_config.json
+   that looks like this: 
    ```bash
-   git clone https://github.com/bhoomika-254/Pokemon-MCP-Server.git
-   cd Pokemon-MCP-Server
+   {
+      "mcpServers": {
+         "pokemon-server": {
+            "command": "C:\\Users\\your_file_path",
+            "args": [
+            "run",
+            "--with",
+            "mcp[cli]",
+            "mcp",
+            "run",
+            "C:\\Users\\your_file_path"
+            ]
+         }
+      }
+   }
    ```
 
-2. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+#### Step 3.3: Connect to Claude Desktop
 
-3. **Run the server**:
-   ```bash
-   python server.py
-   ```
+- Go to Settings -> Developer -> Click on "Edit Config" -> Add the claude_desktop_config.json file. 
 
-## Usage
+#### Step 3.3: Restart Claude Desktop
+Close and reopen Claude Desktop for the changes to take effect.
 
-### 📊 **Pokemon Data Resource**
+## 🧪 Testing the Server
 
-Access comprehensive Pokemon data using the resource URI pattern:
+Once connected, test these features in Claude Desktop:
 
+### 1. Get Pokémon Data
+Ask Claude:
 ```
-mcp://pokemon-server/pokemon/{pokemon_name}
+"Can you get information about Pikachu?"
 ```
 
-**Example**: `mcp://pokemon-server/pokemon/pikachu`
-
-**Returns**:
-- Basic information (ID, types, height, weight)
-- Complete base stats with total
-- All abilities
-- Evolution chain progression
-- Detailed move information (first 5 moves with full details)
-- Additional move names for reference
-
-### 🔥 **Battle Simulation Tool**
-
-Simulate realistic battles between any two Pokemon:
-
-```python
-simulate_battle(pokemon1_name: str, pokemon2_name: str) -> str
+### 2. Simulate a Battle
+Ask Claude:
+```
+"Simulate a battle between Charizard and Blastoise"
 ```
 
-**Example**: Simulate a battle between Pikachu and Charizard
-
-**Features**:
-- Speed-based turn order
-- Type effectiveness calculations
-- Status effect mechanics (Paralysis, Burn, Poison)
-- Detailed turn-by-turn battle logs
-- Winner determination
-
-### 🎯 **Type Effectiveness Tool**
-
-Check type matchups for strategic planning:
-
-```python
-get_type_effectiveness(attacking_type: str, defending_type: str) -> str
+### 3. Check Type Effectiveness
+Ask Claude:
+```
+"What are Garchomp's weaknesses and resistances?"
 ```
 
-**Example**: Check how Fire attacks affect Grass types
+## 🎯 Features
 
-**Returns**:
-- Damage multiplier information
-- Effectiveness description (Super effective, Not very effective, etc.)
+### Pokémon Data Resource
+- Complete stats (HP, Attack, Defense, etc.)
+- Type information and evolution chains
+- Detailed move information with power, accuracy, and effects
+- Physical characteristics (height, weight)
 
-### 🛡️ **Pokemon Type Analysis Tool**
+### Battle Simulation
+- Realistic turn-based combat
+- Type effectiveness calculations (Fire beats Grass, Water beats Fire, etc.)
+- Status effects: Paralysis, Burn, Poison
+- Detailed battle logs showing each turn
 
-Get comprehensive defensive analysis for any Pokemon:
+### Type Analysis Tools
+- Check effectiveness between any two types
+- Analyze a Pokémon's weaknesses and resistances
+- Strategic team building information
 
-```python
-get_pokemon_weaknesses_and_resistances(pokemon_name: str) -> str
-```
+## 🔧 Troubleshooting
 
-**Example**: Analyze Charizard's defensive matchups
+**Server won't connect to Claude:**
+- Make sure the path in the configuration file is correct
+- Check that Python is installed and accessible from command line
+- Verify the JSON syntax is correct (no missing commas or brackets)
 
-**Returns**:
-- All weaknesses with damage multipliers
-- All resistances with damage reduction
-- Complete immunities
-- Strategic recommendations
+**Permission errors:**
+- On Mac, you might need to allow Claude Desktop in System Preferences > Security & Privacy
+- Make sure Claude Desktop has permission to run Python scripts
 
-#### `simulate_battle(pokemon1_name, pokemon2_name)`
-- **Description**: Simulates a battle between two Pokemon
-- **Parameters**:
-  - `pokemon1_name`: Name of the first Pokemon
-  - `pokemon2_name`: Name of the second Pokemon
-- **Returns**: Detailed battle log with turn-by-turn actions and winner
+**Python not found:**
+- Use the full path to Python in the configuration:
+  - Windows: `"C:/Python39/python.exe"`
+  - Mac: `"/usr/bin/python3"`
 
-#### `get_type_effectiveness(attacking_type, defending_type)`
-- **Description**: Gets type effectiveness multiplier
-- **Parameters**:
-  - `attacking_type`: The attacking move's type
-  - `defending_type`: The defending Pokemon's type
-- **Returns**: Effectiveness information and damage multiplier
+## 📋 What You Can Do
 
-#### `get_pokemon_weaknesses_and_resistances(pokemon_name)`
-- **Description**: Analyzes a Pokemon's defensive type matchups
-- **Parameters**:
-  - `pokemon_name`: Name of the Pokemon to analyze
-- **Returns**: Complete breakdown of weaknesses, resistances, and immunities
+Once everything is set up, you can have natural conversations with Claude about Pokémon:
 
-## Battle Mechanics
+- **"Tell me about Mewtwo's stats and abilities"**
+- **"Who would win between Pikachu and Raichu?"**
+- **"What moves should I teach my Charizard?"**
+- **"What types is Dragon weak against?"**
+- **"Build me a balanced team with good type coverage"**
 
-### Type Effectiveness Chart
-The server implements a comprehensive type effectiveness chart with 18 Pokemon types:
-- **Super Effective**: 2x damage
-- **Not Very Effective**: 0.5x damage  
-- **No Effect**: 0x damage
-- **Dual Types**: Multipliers stack (e.g., 2x × 2x = 4x damage)
+The server uses real data from [PokéAPI](https://pokeapi.co/) to ensure accuracy and completeness.
 
-### Status Effects
-1. **Paralysis**: 25% chance to skip turn
-2. **Burn**: Reduces attack damage by 50%, deals 1/8 max HP damage per turn
-3. **Poison**: Deals 1/8 max HP damage per turn
+## 🛠️ Technical Details
 
-### Damage Calculation
-```
-Damage = (((2/5 + 2) × Move Power × (Attack / Defense)) / 50) × Type Effectiveness + 2
-```
+- **Framework**: FastMCP for Model Context Protocol
+- **Data Source**: PokéAPI for real-time Pokémon data
+- **Language**: Python 3.8+
+- **Dependencies**: `fastmcp`, `httpx` for API requests
 
-## Data Source
-
-This server uses the [PokeAPI](https://pokeapi.co/) to fetch real-time Pokemon data, ensuring accuracy and completeness.
-
-## Development
-
-### Requirements
-- Python 3.8+
-- FastMCP framework
-- httpx for API requests
-- PokeAPI
-- uv for connecting claude to mcp server.
-
-### Project Structure
+## 📁 Project Structure
 ```
 Pokemon-MCP-Server/
-├── server.py              # Main MCP server implementation
+├── server.py              # Main MCP server
 ├── requirements.txt       # Python dependencies
-├── README.md             # This documentation
+└── README.md             # This guide
 ```
 
-### How to connect this with Claude Client
-
-To connect your Pokemon MCP Server with Claude Desktop, follow these steps:
-
-#### 1. **Install Claude Desktop**
-Download and install Claude Desktop from [Anthropic's website](https://claude.ai/desktop).
-
-#### 2. **Configure MCP Server in Claude**
-Claude Desktop uses a configuration file to connect to MCP servers. You need to add your Pokemon server to this configuration.
-
-**For Windows:**
-1. Navigate to: `%APPDATA%\Claude\claude_desktop_config.json`
-
-#### 3. **Verify Connection**
-Once Claude Desktop restarts, you should see the Pokemon MCP Server available. You can test it by:
-
-1. **Testing the Resource**: Ask Claude to access Pokemon data:
-   ```
-   "Can you get information about Pikachu using the Pokemon resource?"
-   ```
-
-2. **Testing Battle Simulation**: Ask Claude to simulate a battle:
-   ```
-   "Can you simulate a battle between Charizard and Blastoise?"
-   ```
-
-3. **Testing Type Analysis**: Ask Claude to analyze type effectiveness:
-   ```
-   "What are Garchomp's weaknesses and resistances?"
-   ```
+---
 
