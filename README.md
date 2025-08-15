@@ -10,6 +10,7 @@ A Model Context Protocol (MCP) server that gives AI models access to comprehensi
 
 ### 1. Install Dependencies
 
+Whatever commands are present inside the ```bash ---- ```. copy them as it is.
 Clone this repository and install the required packages:
 
 ```bash
@@ -33,16 +34,16 @@ Press `Ctrl+C` to stop the server.
 ### 3. Connect to Claude Desktop
 
 #### Step 3.1: Install Claude Desktop
-Download and install [Claude Desktop](https://claude.ai/desktop) if you haven't already.
+Download and install [Claude Desktop](https://claude.ai/download) if you haven't already.
 
 #### Step 3.2: Configure the Server
-1. Open the Claude Desktop configuration file:
-   - **Windows**: Navigate to `%APPDATA%\Claude\claude_desktop_config.json`
-   - **Mac**: Navigate to `~/Library/Application Support/Claude/claude_desktop_config.json`
 
-2. Initialize your project
-   - uv init pokemon-mcp-server
-   - uv run mcp install server.py
+2. Initialize your project. 
+   In the terminal type this:
+```bash
+   uv init pokemon-mcp-server
+   uv run mcp install server.py
+```
 
 3. This creates a configuration file which is saved in some similar fashion 
    - claude_desktop_config.json
@@ -65,12 +66,17 @@ Download and install [Claude Desktop](https://claude.ai/desktop) if you haven't 
    }
    ```
 
+   This configuration file can be viewed here:
+   - Press Win + R.
+   - Type: %APPDATA%\Claude
+   - Press Enter and it should open a folder named Claude.
+
 #### Step 3.3: Connect to Claude Desktop
 
 - Go to Settings -> Developer -> Click on "Edit Config" -> Add the claude_desktop_config.json file. 
 
-#### Step 3.3: Restart Claude Desktop
-Close and reopen Claude Desktop for the changes to take effect.
+#### Step 3.4: Restart Claude Desktop
+Close and reopen Claude Desktop for the changes to take effect. Changes might take time to reflect.
 
 ## 🧪 Testing the Server
 
@@ -150,7 +156,7 @@ The server uses real data from [PokéAPI](https://pokeapi.co/) to ensure accurac
 
 ## 📁 Project Structure
 ```
-Pokemon-MCP-Server/
+Foldername/
 ├── server.py              # Main MCP server
 ├── requirements.txt       # Python dependencies
 └── README.md             # This guide
